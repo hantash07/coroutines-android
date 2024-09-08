@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.demonstration.UiThreadDemoFragment">
+    tools:context=".view.fragment.demonstration.ui_thread.UiThreadDemoFragment">
 
     <Button
         android:id="@+id/btn_start"

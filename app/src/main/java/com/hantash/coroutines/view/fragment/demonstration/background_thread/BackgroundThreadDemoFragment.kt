@@ -1,4 +1,4 @@
-package com.hantash.coroutines.view.fragment.demonstration
+package com.hantash.coroutines.view.fragment.demonstration.background_thread
 
 import android.os.Bundle
 import android.os.Handler
@@ -8,18 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.hantash.coroutines.databinding.FragmentUiThreadDemoBinding
+import com.hantash.coroutines.databinding.FragmentBackgroundThreadDemoBinding
 import com.hantash.coroutines.model.ThreadInfoLogger
 
 
-class UiThreadDemoFragment : Fragment() {
-    private lateinit var binding: FragmentUiThreadDemoBinding
+class BackgroundThreadDemoFragment : Fragment() {
+    private lateinit var binding: FragmentBackgroundThreadDemoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentUiThreadDemoBinding.inflate(layoutInflater, container, false)
+        binding = FragmentBackgroundThreadDemoBinding.inflate(layoutInflater, container, false)
 
         binding.btnStart.setOnClickListener {
             logThreadInfo("button callback")
@@ -36,18 +36,23 @@ class UiThreadDemoFragment : Fragment() {
 
         updateRemainingTime(benchmarkDurationSeconds)
 
-        logThreadInfo("benchmark started")
+        Thread {
+            logThreadInfo("benchmark started")
 
-        val stopTimeNano = System.nanoTime() + benchmarkDurationSeconds * 1_000_000_000L
+            val stopTimeNano = System.nanoTime() + benchmarkDurationSeconds * 1_000_000_000L
 
-        var iterationsCount: Long = 0
-        while (System.nanoTime() < stopTimeNano) {
-            iterationsCount++
-        }
+            var iterationsCount: Long = 0
+            while (System.nanoTime() < stopTimeNano) {
+                iterationsCount++
+            }
 
-        logThreadInfo("benchmark completed")
+            logThreadInfo("benchmark completed")
 
-        Toast.makeText(requireContext(), "$iterationsCount", Toast.LENGTH_SHORT).show()
+            Handler(Looper.getMainLooper()).post {
+                Toast.makeText(requireContext(), "$iterationsCount", Toast.LENGTH_SHORT).show()
+            }
+
+        }.start()
     }
 
     private fun updateRemainingTime(remainingTimeSeconds: Int) {
@@ -70,6 +75,6 @@ class UiThreadDemoFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = UiThreadDemoFragment()
+        fun newInstance() = BackgroundThreadDemoFragment()
     }
 }

@@ -1,4 +1,4 @@
-package com.hantash.coroutines.view.fragment.demonstration
+package com.hantash.coroutines.view.fragment.demonstration.basic_coroutine
 
 import android.os.Bundle
 import android.os.Handler
@@ -12,15 +12,13 @@ import com.hantash.coroutines.databinding.FragmentUiThreadDemoBinding
 import com.hantash.coroutines.model.ThreadInfoLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class BasicCancellationDemoFragment : Fragment() {
+class BasicCoroutineDemoFragment : Fragment() {
     private lateinit var binding: FragmentUiThreadDemoBinding
     private val coroutineScope = CoroutineScope(Dispatchers.Main.immediate)
-    private var job: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +28,7 @@ class BasicCancellationDemoFragment : Fragment() {
 
         binding.btnStart.setOnClickListener {
             logThreadInfo("button callback")
-            job = coroutineScope.launch {
+            coroutineScope.launch {
                 binding.btnStart.isEnabled = false
                 val iterationsCount = executeBenchmark() //Waiting for suspended function to execute
                 Toast.makeText(requireContext(), "$iterationsCount", Toast.LENGTH_SHORT).show()
@@ -39,13 +37,6 @@ class BasicCancellationDemoFragment : Fragment() {
         }
 
         return binding.root
-    }
-
-    override fun onStop() {
-        super.onStop()
-        logThreadInfo("onStop()")
-        job?.cancel()
-        binding.btnStart.isEnabled = true
     }
 
     private suspend fun executeBenchmark(): Long {
@@ -88,6 +79,6 @@ class BasicCancellationDemoFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = BasicCancellationDemoFragment()
+        fun newInstance() = BasicCoroutineDemoFragment()
     }
 }
