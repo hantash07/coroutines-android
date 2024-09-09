@@ -5,4 +5,6 @@
     <string name="start_benchmark">Start benchmark</string>
     <string name="user_id">User ID</string>
     <string name="get_reputation">Get reputation</string>
+    <string name="tracking_start">Start tracking</string>
+    <string name="tracking_stop">Stop tracking</string>
 </resources>

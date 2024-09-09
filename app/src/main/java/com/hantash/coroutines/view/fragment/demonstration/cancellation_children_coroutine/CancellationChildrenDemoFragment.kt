@@ -1,4 +1,4 @@
-package com.hantash.coroutines.view.fragment.demonstration.concurrency_cancellation
+package com.hantash.coroutines.view.fragment.demonstration.cancellation_children_coroutine
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class ConcurrencyCancellationDemoFragment : Fragment() {
+class CancellationChildrenDemoFragment : Fragment() {
     private lateinit var binding: FragmentUiThreadDemoBinding
     private val coroutineScope = CoroutineScope(Dispatchers.Main.immediate)
 
@@ -96,6 +96,6 @@ class ConcurrencyCancellationDemoFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = ConcurrencyCancellationDemoFragment()
+        fun newInstance() = CancellationChildrenDemoFragment()
     }
 }

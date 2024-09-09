@@ -1,4 +1,4 @@
-package com.hantash.coroutines.view.fragment.demonstration.concurrency
+package com.hantash.coroutines.view.fragment.demonstration.cancellation_scope_coroutine
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,17 +11,21 @@ import com.hantash.coroutines.model.ThreadInfoLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class ConcurrencyDemoFragment : Fragment() {
+class CancellationScopeCoroutineDemoFragment : Fragment() {
     private lateinit var binding: FragmentUiThreadDemoBinding
     private val coroutineScope = CoroutineScope(Dispatchers.Main.immediate)
 
     private var jobCounter: Job? = null
     private var job: Job? = null
+
+    private var hasBenchmarkBeenStartedOnce = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,11 +44,12 @@ class ConcurrencyDemoFragment : Fragment() {
 
             job = coroutineScope.launch {
                 binding.btnStart.isEnabled = false
-                val iterationsCount =
-                    executeBenchmark(benchmarkDurationSeconds) //Waiting for suspended function to execute
+                val iterationsCount = executeBenchmark(benchmarkDurationSeconds) //Waiting for suspended function to execute
                 Toast.makeText(requireContext(), "$iterationsCount", Toast.LENGTH_SHORT).show()
                 binding.btnStart.isEnabled = true
             }
+
+            hasBenchmarkBeenStartedOnce = true
         }
 
         return binding.root
@@ -53,10 +58,9 @@ class ConcurrencyDemoFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         logThreadInfo("onStop()")
-        job?.cancel()
-        binding.btnStart.isEnabled = true
-        jobCounter?.apply {
-            cancel()
+        coroutineScope.coroutineContext.cancel()
+        if (hasBenchmarkBeenStartedOnce) {
+            binding.btnStart.isEnabled = true
             binding.tvRemainingTime.text = "done!"
         }
     }
@@ -93,6 +97,6 @@ class ConcurrencyDemoFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = ConcurrencyDemoFragment()
+        fun newInstance() = CancellationScopeCoroutineDemoFragment()
     }
 }

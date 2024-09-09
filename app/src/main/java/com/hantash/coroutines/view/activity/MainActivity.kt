@@ -3,6 +3,8 @@ package com.hantash.coroutines.view.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.hantash.coroutines.databinding.ActivityMainBinding
+import com.hantash.coroutines.view.fragment.demonstration.cancellation_scope_coroutine.CancellationScopeCoroutineDemoFragment
+import com.hantash.coroutines.view.fragment.demonstration.viewmodel.ViewModelDemoFragment
 import com.hantash.coroutines.view.fragment.solution.Exercise3SolutionFragment
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(
             binding.frameContent.id,
-            Exercise3SolutionFragment.newInstance(),
+            ViewModelDemoFragment.newInstance(),
         )
         transaction.commit()
     }
