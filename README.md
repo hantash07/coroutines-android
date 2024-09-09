@@ -1,6 +1,7 @@
-## Coroutines
+# Coroutines
 
-### Basic Concepts
+## Basic Concepts
+
 - Coroutines in Kotlin are a powerful tool for writing asynchronous and non-blocking code in a straightforward and sequential style.
 - Coroutine make it easy to manage concurrency, handle background task and simplifly asynchronous programming.
 - Coroutine make it easy to perform other tasks, while doing long running task.
@@ -30,5 +31,22 @@
 - CoroutineScope controls the lifecycle of the Coroutine.
 - More than one Coroutine can be associated with CoroutineScope at any time.
 - CoroutineScope can cancel all its children Coroutines.
+
+
+## Coroutine Scope Cancellation
+
+### Two ways to cancel all CoroutineScope's children
+1. coroutineScope.coroutineContext.cancelChildren
+2. coroutineScope.cancel
+
+### Scope Cancellation vs Scope's Children Cancellation
+- When Coroutine scope is cancelled itself, It will not able to re launch again.
+- When children Coroutines are cancelled, the coroutine are able to re launch again.
+
+### ViewmodelScope Kotlin Extensions
+- It is recommended to use viewmodelScope instead of coroutine scope inside Viewmodel class.
+- viewmodelScope handles the cancellations of jobs based on the lifecycle of Voewmodel. With CoroutineScope we need to explicitly cancel the job.
+
+
 
 
