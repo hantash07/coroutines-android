@@ -48,5 +48,57 @@
 - viewmodelScope handles the cancellations of jobs based on the lifecycle of Voewmodel. With CoroutineScope we need to explicitly cancel the job.
 
 
+## Structured Concurrency
+
+- Ability to pause the code execution and wait for all concurrent flows which can be traced back to a specific ancestor to complete.
+
+## Main Design Rule for Concurrent Code in Android
+
+- Presentation layer or UI related logic should use UI thread.
+- For long running task or multithreading create a separate class (e.g., UseCase, Repository etc.)
+
+
+## Dispatchers
+- It control on which threads the Coroutine code will be executed.
+
+### Standard Dispatchers in Android
+1. Dispatchers.Main
+2. Dispatchers.Main.Immediate
+3. Dispatchers.Default
+4. Dispatchers.IO
+5. Dispatchers.Unconfined
+
+### Dispatchers.Main
+- It executes the code on the UI (main) thread of Android application.
+- When a coroutine is dispatched using Dispatchers.Main, it might not execute immediately if the main thread is busy. Instead, it is added to the main thread's event queue and will execute once the main thread is free.
+- This is typically used when you want to ensure that a coroutine is executed on the main thread, but you do not necessarily require it to run immediately if the main thread is currently handling other tasks.
+
+### Dispatchers.Main.Immediate
+- Dispatchers.Main.Immediate also execute the code on the UI thread but the code is executed immediately instead of putting task into thread queue.
+- When a coroutine is dispatched using Dispatchers.Main, and the current thread is the main thread then the coroutine will be executed right away without being enqueued.
+- However, if the current thread is not the main thread, it behaves just like Dispatchers.Main and will be enqueued on the main thread.
+- This is useful when you are already on the main thread and want to avoid the overhead of enqueuing the coroutine on the event queue, ensuring that it runs as soon as possible.
+
+### Dispatchers.Default
+- It is designed for CPU-intensive tasks, such as sorting large datasets, performing complex calculations, or running tasks that require significant processing power.
+- It is used for a heavy task but don't involve blocking I/O operations. For example, image processing, data transformation, or running algorithms.
+
+### Dispatchers.IO
+- is optimized for I/O-bound operations, such as reading or writing files, making network requests, or interacting with databases.
+- deal for tasks that involve blocking I/O operations, where the thread may be idle waiting for external resources (like disk, network, or database). For example, fetching data from an API, reading files, or performing database queries.
+
+### Dispatchers.Unconfined
+- tarts the coroutine in the current thread, but it does not confine it to a specific thread. This means that the coroutine can resume on a different thread after suspension.
+
+
+
+
+
+
+
+
+
+
+
 
 
