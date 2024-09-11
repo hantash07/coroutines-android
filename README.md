@@ -47,6 +47,12 @@
 - It is recommended to use viewmodelScope instead of coroutine scope inside Viewmodel class.
 - viewmodelScope handles the cancellations of jobs based on the lifecycle of Voewmodel. With CoroutineScope we need to explicitly cancel the job.
 
+### Cancellation Exception
+- When a `coroutineScope.Launch()` is cancelled, the suspended functions with default dispatchers still continue its execution but once the execution is completed it will through an exception because where this suspended function was launched has been cancelled.
+- When a `coroutineScope.Launch()` is cancelled, the suspended functions with default dispatchers also need to be stopped or cancelled. With the help of `ensureActive()` or `isActive` we can meke the suspended function stop its execution.
+- When a suspended function is not dispatched into a separate dispatchers (e.g., Dispatchers.Default) then when the `coroutineScope.Launch()` is cancelled, it will not throw cancellable exception.
+- In some cases, you will need to use `NonCancellable` to protect critical part of your code from being cancelled during execution.
+
 
 ## Structured Concurrency
 
@@ -91,8 +97,7 @@
 - tarts the coroutine in the current thread, but it does not confine it to a specific thread. This means that the coroutine can resume on a different thread after suspension.
 
 
-
-
+## Coroutine Cancellation
 
 
 
