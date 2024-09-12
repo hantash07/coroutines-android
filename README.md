@@ -97,9 +97,6 @@
 - tarts the coroutine in the current thread, but it does not confine it to a specific thread. This means that the coroutine can resume on a different thread after suspension.
 
 
-## Coroutine Cancellation
-
-
 
 
 
