@@ -3,14 +3,9 @@ package com.hantash.coroutines.view.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.hantash.coroutines.databinding.ActivityMainBinding
-import com.hantash.coroutines.view.fragment.demonstration.cancellation_scope_coroutine.CancellationScopeCoroutineDemoFragment
-import com.hantash.coroutines.view.fragment.demonstration.cooperative_cancellation.CancellationCooperativeDemoFragment
-import com.hantash.coroutines.view.fragment.demonstration.cooperative_cancellation2.CancellationCooperativeDemoFragment2
-import com.hantash.coroutines.view.fragment.demonstration.viewmodel.ViewModelDemoFragment
-import com.hantash.coroutines.view.fragment.exercise.Exercise5.Exercise5Fragment
-import com.hantash.coroutines.view.fragment.solution.Exercise3SolutionFragment
-import com.hantash.coroutines.view.fragment.solution.exercise4.Exercise4SolutionFragment
+import com.hantash.coroutines.view.fragment.exercise.exercise6.Exercise6Fragment
 import com.hantash.coroutines.view.fragment.solution.exercise5.Exercise5SolutionFragment
+import com.hantash.coroutines.view.fragment.solution.exercise6.Exercise6SolutionFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -24,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(
             binding.frameContent.id,
-            Exercise5SolutionFragment.newInstance(),
+            Exercise6SolutionFragment.newInstance(),
         )
         transaction.commit()
     }

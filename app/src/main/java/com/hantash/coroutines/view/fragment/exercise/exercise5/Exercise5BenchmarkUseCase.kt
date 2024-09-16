@@ -1,4 +1,4 @@
-package com.hantash.coroutines.view.fragment.exercise.Exercise5
+package com.hantash.coroutines.view.fragment.exercise.exercise5
 
 import com.hantash.coroutines.model.ThreadInfoLogger.logThreadInfo
 import kotlinx.coroutines.Dispatchers

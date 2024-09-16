@@ -1,4 +1,4 @@
-package com.hantash.coroutines.view.fragment.exercise.Exercise5
+package com.hantash.coroutines.view.fragment.exercise.exercise5
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,7 +13,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.coroutines.cancellation.CancellationException
 
 
 class Exercise5Fragment : Fragment() {

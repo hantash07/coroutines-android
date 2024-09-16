@@ -1,7 +1,7 @@
 package com.hantash.coroutines.view.fragment.solution.exercise5
 
 import com.hantash.coroutines.model.ThreadInfoLogger.logThreadInfo
-import com.hantash.coroutines.view.fragment.exercise.Exercise5.PostBenchmarkResultsEndpoint
+import com.hantash.coroutines.view.fragment.exercise.exercise5.PostBenchmarkResultsEndpoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext

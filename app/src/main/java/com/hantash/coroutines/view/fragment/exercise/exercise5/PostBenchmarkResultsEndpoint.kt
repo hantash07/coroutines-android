@@ -1,7 +1,4 @@
-package com.hantash.coroutines.view.fragment.exercise.Exercise5
-
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+package com.hantash.coroutines.view.fragment.exercise.exercise5
 
 /**
  * Existing class which you can't change

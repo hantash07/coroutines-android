@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.hantash.coroutines.databinding.FragmentUiThreadDemoBinding
 import com.hantash.coroutines.model.ThreadInfoLogger
-import com.hantash.coroutines.view.fragment.exercise.Exercise5.PostBenchmarkResultsEndpoint
+import com.hantash.coroutines.view.fragment.exercise.exercise5.PostBenchmarkResultsEndpoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancelChildren

@@ -7,4 +7,5 @@
     <string name="get_reputation">Get reputation</string>
     <string name="tracking_start">Start tracking</string>
     <string name="tracking_stop">Stop tracking</string>
+    <string name="fetch_user">Fetch Users</string>
 </resources>
