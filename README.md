@@ -52,6 +52,8 @@
 - When a `coroutineScope.Launch()` is cancelled, the suspended functions with default dispatchers also need to be stopped or cancelled. With the help of `ensureActive()` or `isActive` we can meke the suspended function stop its execution.
 - When a suspended function is not dispatched into a separate dispatchers (e.g., Dispatchers.Default) then when the `coroutineScope.Launch()` is cancelled, it will not throw cancellable exception.
 - In some cases, you will need to use `NonCancellable` to protect critical part of your code from being cancelled during execution.
+- `NonCancellable` is detaching `withContext` from its parent job.
+- `NonCancellable` is only designed for `withContext`.
 
 
 ## Structured Concurrency
