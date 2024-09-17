@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.hantash.coroutines.databinding.ActivityMainBinding
 import com.hantash.coroutines.view.fragment.demonstration.uncaught_exception.UncaughtExceptionDemoFragment
 import com.hantash.coroutines.view.fragment.exercise.exercise6.Exercise6Fragment
+import com.hantash.coroutines.view.fragment.solution.Exercise7SolutionFragment
 import com.hantash.coroutines.view.fragment.solution.exercise5.Exercise5SolutionFragment
 import com.hantash.coroutines.view.fragment.solution.exercise6.Exercise6SolutionFragment
 
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(
             binding.frameContent.id,
-            UncaughtExceptionDemoFragment.newInstance(),
+            Exercise7SolutionFragment.newInstance(),
         )
         transaction.commit()
     }
