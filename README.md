@@ -99,6 +99,32 @@
 - tarts the coroutine in the current thread, but it does not confine it to a specific thread. This means that the coroutine can resume on a different thread after suspension.
 
 
+## Parallel Decomposition
+
+- It is a method used in parallel computing. It is used to break down large computational task into smaller task.
+
+### Parallel Decomposition using Coroutines
+  1. CoroutineScope.launch{}
+  2. CoroutineScope.async{}
+
+- Do not access shared mutable stage from concurrent Coroutines.
+
+
+## Exception Handling in Coroutines
+
+- When any of a child of **CoroutineScope** throws an uncaught exception, that child coroutine will be cancelled and the parent CoroutineScope will be cancelled. When the parent CoroutineScope is cancelled all its child will also be cancelled.
+- In order to prevent CoroutineScope or its child from cancelling when one of its child fails or cancelled is to install SupervisorJob() into CoroutineScope.
+- We can use **CoroutineExceptionHandler** to catch uncaught exceptions.
+- When uncaught exception is thrown, the default handler handle it and the app crashes. When this uncaught exceptions is handled with **CoroutineExceptionHandler** the app does not crashes.
+- The best way to handle exceptions in coroutine is to `try-catch` them locally and prevent their propagation to CoroutineScope.
+- In Coroutine Async, exception is thrown in Deferred.await() function. 
+
+
+
+
+
+
+
 
 
 
