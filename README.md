@@ -99,6 +99,24 @@
 - tarts the coroutine in the current thread, but it does not confine it to a specific thread. This means that the coroutine can resume on a different thread after suspension.
 
 
+## Coroutine Builders
+- Following are the coroutine buolders:
+  1. Coroutine.Launch
+  2. Coroutine.async
+
+- Both the builders are used to run coroutines with different purposes and behiviour
+
+### Coroutine.Launch
+- Used to launch a coroutine that does not return a result.
+- It returns a `Job` object which used to manage or cancel the coroutine
+- It is used when you want to perform a task that does not return a result.
+
+### Coroutine.Async
+- Used to launch a coroutine that does not return a result.
+- It returns a `Deferred<T>` object, which is a future-like object the holds the result of the coroutine. You can call `.await()` on the deferred object to retrieve the results.
+- It is used when you want to perform a task that returns a result.
+
+
 ## Parallel Decomposition
 
 - It is a method used in parallel computing. It is used to break down large computational task into smaller task.
